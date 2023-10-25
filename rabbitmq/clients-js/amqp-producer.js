@@ -6,13 +6,12 @@ import dotenv from 'dotenv'
 dotenv.config()
 const mquser = process.env.MQUSER
 const mqpass = process.env.MQPASS
-const mqhost = process.env.MQHOST
 
 try {
     // Sender
     const message = 'Hello World! '
     const queue = 'hello'
-    const conn = await amqplib.connect(`amqp://${mquser}:${mqpass}@${mqhost}`)
+    const conn = await amqplib.connect(`amqp://${mquser}:${mqpass}@localhost`)
     // const ch1 = await conn.createChannel()
     const ch2 = await conn.createConfirmChannel()
     await ch2.assertQueue(queue, { durable: true })
