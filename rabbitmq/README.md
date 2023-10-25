@@ -1,4 +1,4 @@
-api-ocr
+RabbitMQ
 ============
 ### Basic proyect to learn about rabbitmq and queue patron.
 
