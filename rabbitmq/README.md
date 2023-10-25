@@ -11,8 +11,8 @@ RabbitMQ
 - > docker-compose up -d
 
 ## Run rabbitmq producer / consumer ## 
-- >  node .\clients-js\amqp-consumer.js
-- >  node .\clients-js\amqp-producer.js
+- >  node ./clients-js/amqp-consumer.js
+- >  node ./clients-js/amqp-producer.js
 
 ## Rabbit MQ mangement console
 - go to [localhost:8080](http://localhost:8080)
