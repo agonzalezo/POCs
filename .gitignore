@@ -132,3 +132,4 @@ dist
 #
 deployable.yml.tmp
 .custom-data
+*.exe
