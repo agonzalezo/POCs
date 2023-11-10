@@ -1,0 +1,42 @@
+config:
+  # This is a test server run by team Artillery
+  # It's designed to be highly scalable
+  target: https://netsys.uno
+  tls:
+    rejectUnauthorized: false
+  phases:
+    - duration: 30
+      arrivalCount : 30
+      name: Warm up phase
+    - duration: 20
+      arrivalRate: 3
+      rampTo: 5
+      maxVusers: 50
+      name: Ramp up load
+    - duration: 20
+      arrivalCount: 60
+      name: Spike phase
+  # Load & configure a couple of useful plugins
+  # https://docs.art/reference/extensions
+  plugins:
+    ensure: {}
+    apdex: {}
+    metrics-by-endpoint: {}
+  apdex:
+    threshold: 350
+  ensure:
+      thresholds:
+        - http.response_time.p99: 400
+        - http.response_time.p95: 300
+scenarios:
+  - flow:
+      - loop:
+        - get:
+            url: "/api/auth/ping"
+        - get:
+            url: "/api/ocr/ping"
+        # - get:
+        #     url: "/web/ocr"
+        # - get:
+        #     url: "/web/speech"
+        count: 10
